@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Junction - Sweet Boxes</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #D4A574;
+            --secondary-color: #F5F1E8;
+            --accent-color: #E8B86D;
+            --text-dark: #2C2C2C;
+            --text-light: #666;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, #D4A574 0%, #E8B86D 100%);
+            --shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
+            --border-radius: 12px;
+        }
+
+body {
+    background: #fdfdfd;
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    background-color: var(--secondary-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+    /* * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #fdfdfd; color: #333; } */
+
+    /* Booking Section */
+    .booking-section { padding: 40px 0; background: #fff;margin-top: 100px; }
+    .booking-header { text-align: center; margin-bottom: 30px; }
+    .booking-header h1 { font-size: 32px; color: #ff6b6b; }
+    .booking-header p { color: #555; }
+
+    .booking-container { display: flex; gap: 30px; flex-wrap: wrap; width: 90%; margin: auto; }
+    /* .booking-form { flex: 2; background: #f9f9f9; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); } */
+    .booking-form {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: auto;
+}
+
+    .form-row { display: flex; gap: 20px; flex-wrap: wrap; }
+    .form-group { flex: 1; display: flex; flex-direction: column; margin-bottom: 15px; }
+    label { font-weight: 500; margin-bottom: 6px; }
+    input, select, textarea {
+      padding: 10px; border: 1px solid #ddd; border-radius: 8px;
+      transition: 0.3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #ff6b6b; outline: none; box-shadow: 0 0 6px rgba(255,107,107,0.4);
+    }
+
+    /* Submit */
+    .form-submit { text-align: center; }
+    .btn {
+      background: #25d366; border: none; padding: 12px 25px; color: #fff;
+      font-size: 16px; font-weight: 600; border-radius: 8px; cursor: pointer;
+      transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn:hover { background: #1da955; transform: translateY(-2px); }
+    .form-note { font-size: 14px; margin-top: 10px; color: #555; }
+
+    /* Order Summary */
+    .order-summary {
+      flex: 1; background: #fff7f7; padding: 20px;
+      border-radius: 12px; box-shadow: 0 4px 10px rgba(255,107,107,0.2);
+      min-width: 280px;
+    }
+    .order-summary h3 { margin-bottom: 15px; color: #ff6b6b; }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .booking-container { flex-direction: column; }
+    }
+
+
+    
+/* Navbar */
+.navbar {
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: fixed;
+    top: 0;
+    width: 65%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    margin: 20px 10px 10px 356px;
+    border-radius: 50px;
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    
+}
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo img {
+        top: 0;
+    height: 100px;   /* Logo size */
+    width: auto;
+    object-fit: contain;
+    margin-right:20px;
+    padding-right: 40px;
+     position: fixed;
+
+}
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+.nav-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+.nav-link:hover { color: var(--primary-color); }
+.mobile-menu-toggle { display: none; }
+
+
+/* Hero */
+.hero {
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(232, 184, 109, 0.1));
+    padding: 6rem 0 4rem;
+    text-align: center;
+}
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero p { font-size: 1.2rem; color: var(--text-light); margin-bottom: 2rem; }
+.cta-button {
+    display: inline-block;
+    background: var(--gradient);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cta-button:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+
+
+/* Footer */
+    .footer { background: #333; color: #fff; padding: 40px 0 20px; }
+    .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; width: 90%; margin: auto; gap: 20px; }
+    .footer-section h3, .footer-section h4 { margin-bottom: 10px; }
+    .footer-section p, .footer-section a { color: #ccc; font-size: 14px; text-decoration: none; }
+    .footer-section a:hover { color: #fff; }
+    .social-links a { color: #fff; margin-right: 12px; font-size: 18px; transition: 0.3s; }
+    .social-links a:hover { color: #ff6b6b; }
+    .footer-bottom { text-align: center; margin-top: 20px; border-top: 1px solid #444; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .nav-menu { display: none; flex-direction: column; background: #ff6b6b; position: absolute; top: 60px; right: 20px; padding: 20px; border-radius: 8px; }
+      .nav-menu.active { display: flex; }
+      .hamburger { display: flex; }
+      .booking-container { flex-direction: column; }
+    }
+
+
+  </style>
+</head>
+<body>
+<!-- Navbar -->
+ <div class="logo">
+        <img src="web img\boxlogo.png" alt="Box Junction Logo" >
+      </div>
+      
+  <nav class="navbar">
+    <div class="container nav-container">
+      
+      <ul class="nav-menu">
+        <li><a href="home.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">Products</a></li>
+        <li><a href="booking.html" class="nav-link">Book Now</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Booking Page -->
+  <div id="booking" class="page active">
+    <section class="booking-section">
+      <div class="container">
+        <div class="booking-header">
+          <h1>Book Your Sweet Box</h1>
+          <p>Fill out the form below and we'll send all details to WhatsApp</p>
+        </div>
+
+        <div class="booking-container">
+          <!-- Booking Form -->
+          <form class="booking-form" id="bookingForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" required>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="boxType">Select Box Type *</label>
+              <select id="boxType" name="boxType" required>
+                <option value="">Choose a box type</option>
+                <option value="birthday">Birthday Special Box</option>
+                <option value="wedding">Wedding Celebration Box</option>
+                <option value="festival">Festival Delights Box</option>
+                <option value="romance">Love & Romance Box</option>
+                <option value="achievement">Achievement Box</option>
+                <option value="babyshower">Baby Shower Box</option>
+                <option value="custom">Custom Box</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="boxSize">Box Size *</label>
+                <select id="boxSize" name="boxSize" required>
+                  <option value="">Select size</option>
+                  <option value="small">Small (₹549-₹699)</option>
+                  <option value="medium">Medium (₹799-₹999)</option>
+                  <option value="large">Large (₹1199-₹1599)</option>
+                  <option value="premium">Premium (₹1799-₹2499)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="quantity">Quantity *</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="deliveryDate">Preferred Delivery Date *</label>
+                <input type="date" id="deliveryDate" name="deliveryDate" required>
+              </div>
+              <div class="form-group">
+                <label for="deliveryTime">Preferred Time Slot</label>
+                <select id="deliveryTime" name="deliveryTime">
+                  <option value="">Any time</option>
+                  <option value="morning">Morning (9 AM - 12 PM)</option>
+                  <option value="afternoon">Afternoon (12 PM - 4 PM)</option>
+                  <option value="evening">Evening (4 PM - 8 PM)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Delivery Address *</label>
+              <textarea id="address" name="address" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="specialRequests">Special Requests / Custom Message</label>
+              <textarea id="specialRequests" name="specialRequests" rows="3"></textarea>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn">
+                <i class="fab fa-whatsapp"></i> Send Order via WhatsApp
+              </button>
+              <p class="form-note">All details will be sent to WhatsApp.</p>
+            </div>
+          </form>
+
+          <!-- Order Summary -->
+          <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div id="summaryContent">
+              <p>Fill the form to see order summary</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+<!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-section">
+        <h3>Box Junction</h3>
+        <p>Premium sweet boxes for every celebration</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <a href="products.html">Products</a><br>
+        <a href="booking.html">Book Now</a><br>
+        <a href="about.html">About</a>
+      </div>
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <p><i class="fas fa-phone"></i> +91 9310666519</p>
+        <p><i class="fas fa-envelope"></i> boxjunction1010@gmail.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2024 Box Junction. All rights reserved.</div>
+  </footer>
+  <!-- Floating WhatsApp Button -->
+<a href="https://wa.me/919310666519" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+  <!-- Script -->
+  <script>
+    const form = document.getElementById("bookingForm");
+    const summary = document.getElementById("summaryContent");
+
+    // Price ranges for each size
+    const sizePriceRanges = {
+      small: [549, 699],
+      medium: [799, 999],
+      large: [1199, 1599],
+      premium: [1799, 2499]
+    };
+
+    // Lock unit price
+    let lockedUnitPrice = 0;
+
+    function getRandomPrice(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // When box size changes, lock random price
+    form.boxSize.addEventListener("change", () => {
+      const selectedSize = form.boxSize.value;
+      if (selectedSize && sizePriceRanges[selectedSize]) {
+        lockedUnitPrice = getRandomPrice(sizePriceRanges[selectedSize][0], sizePriceRanges[selectedSize][1]);
+      } else {
+        lockedUnitPrice = 0;
+      }
+      updateSummary();
+    });
+
+    // Update summary on input
+    form.addEventListener("input", () => {
+      updateSummary();
+    });
+
+    function updateSummary() {
+      const firstName = form.firstName.value;
+      const lastName = form.lastName.value;
+      const phone = form.phone.value;
+      const boxType = form.boxType.value;
+      const boxSize = form.boxSize.value;
+      const quantity = parseInt(form.quantity.value) || 0;
+      const deliveryDate = form.deliveryDate.value;
+      const deliveryTime = form.deliveryTime.value;
+      const address = form.address.value;
+
+      let total = 0;
+      if (lockedUnitPrice > 0 && quantity > 0) {
+        total = lockedUnitPrice * quantity;
+      }
+
+      summary.innerHTML = `
+        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+        <p><strong>Phone:</strong> ${phone || "-"}</p>
+        <p><strong>Box:</strong> ${boxType || "-"} (${boxSize || "-"})</p>
+        <p><strong>Quantity:</strong> ${quantity || "-"}</p>
+        <p><strong>Delivery Date:</strong> ${deliveryDate || "-"}</p>
+        <p><strong>Time Slot:</strong> ${deliveryTime || "-"}</p>
+        <p><strong>Address:</strong> ${address || "-"}</p>
+        <hr>
+        <p><strong>Unit Price:</strong> ₹${lockedUnitPrice || 0}</p>
+        <p><strong>Total Price:</strong> ₹${total || 0}</p>
+      `;
+    }
+
+    // WhatsApp Message Builder
+    function formatWhatsAppMessage(orderDetails) {
+      const boxTypeNames = {
+        birthday: 'Birthday Special Box',
+        wedding: 'Wedding Celebration Box',
+        festival: 'Festival Delights Box',
+        romance: 'Love & Romance Box',
+        achievement: 'Achievement Box',
+        babyshower: 'Baby Shower Box',
+        custom: 'Custom Box'
+      };
+
+      const sizeNames = {
+        small: 'Small (₹549-₹699)',
+        medium: 'Medium (₹799-₹999)',
+        large: 'Large (₹1199-₹1599)',
+        premium: 'Premium (₹1799-₹2499)'
+      };
+
+      const timeSlots = {
+        morning: 'Morning (9 AM - 12 PM)',
+        afternoon: 'Afternoon (12 PM - 4 PM)',
+        evening: 'Evening (4 PM - 8 PM)'
+      };
+
+      const quantity = parseInt(orderDetails.quantity) || 0;
+      let total = 0;
+      if (lockedUnitPrice > 0 && quantity > 0) {
+        total = lockedUnitPrice * quantity;
+      }
+
+      return `
+🍬 *NEW ORDER - BOX JUNCTION* 🍬
+
+👤 *Customer Details:*
+Name: ${orderDetails.firstName || ""} ${orderDetails.lastName || ""}
+Phone: ${orderDetails.phone || ""}
+${orderDetails.email ? `Email: ${orderDetails.email}` : ""}
+
+📦 *Order Details:*
+Box Type: ${boxTypeNames[orderDetails.boxType] || orderDetails.boxType || ""}
+Size: ${sizeNames[orderDetails.boxSize] || orderDetails.boxSize || ""}
+Quantity: ${orderDetails.quantity || ""}
+Delivery Date: ${orderDetails.deliveryDate || ""}
+Time Slot: ${timeSlots[orderDetails.deliveryTime] || orderDetails.deliveryTime || ""}
+Address: ${orderDetails.address || ""}
+${orderDetails.specialRequests ? `Special Requests: ${orderDetails.specialRequests}` : ""}
+
+💰 *Unit Price:* ₹${lockedUnitPrice || 0}
+💰 *Total Price:* ₹${total || 0}
+      `.trim();
+    }
+
+    // Submit form → WhatsApp
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const orderDetails = Object.fromEntries(formData.entries());
+
+      const message = formatWhatsAppMessage(orderDetails);
+      const WHATSAPP_NUMBER = "919717382543"; // Change to your number
+      const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+      window.open(whatsappURL, "_blank");
+      form.reset();
+      lockedUnitPrice = 0;
+      summary.innerHTML = "<p>Fill the form to see order summary</p>";
+    });
+  </script>
+</body>
+</html>
